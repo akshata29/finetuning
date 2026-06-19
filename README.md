@@ -1,11 +1,3 @@
----
-title: 1-Hour Azure Fine-Tuning Demo
-description: Run-of-show, prerequisites, and per-act commands for the end-to-end Azure fine-tuning demo (synthetic data, serverless + GPU LoRA, evaluation, hosting).
-author: Playground demo team
-ms.date: 2026-06-17
-ms.topic: how-to
----
-
 ## Overview
 
 An end-to-end, **100% synthetic, PII-free** demo of fine-tuning on Azure AI
@@ -21,22 +13,6 @@ Four acts:
 2. **Two ways to fine-tune** — serverless Azure OpenAI SFT/DPO/RFT (live) and GPU managed-compute LoRA (pre-baked).
 3. **Rigorous evaluation** — base vs fine-tuned vs optimized-prompt on one Foundry plane, plus offline scikit-learn aggregate metrics.
 4. **Hosting** — cheap Developer-tier deploy + live inference and the "one plane" governance story.
-
-## Run-of-show
-
-| Time | Act | Live vs pre-baked | Subcommand |
-|---|---|---|---|
-| 0:00-0:08 | Framing | — | — |
-| 0:08-0:20 | Act 1 synthetic data | Live sample + dedup/PII; dataset pre-generated | `gen-data` |
-| 0:20-0:35 | Act 2A serverless SFT | Live upload + job create + poll; finished job pre-baked | `sft` |
-| (opt) | Act 2A serverless DPO | Live preference fine-tuning (serverless differentiator) | `dpo` |
-| (opt) | Act 2A serverless RFT | Live reinforcement fine-tuning with grader-scored rows | `rft` |
-| (opt) | Act 2A1 quick-eval | Live base vs fine-tuned on validation holdout | `quick-eval` |
-| (opt) | Act 3A Foundry eval | Upload base/SFT/DPO/RFT runs to the Foundry Evaluations tab | `foundry-eval` |
-| 0:35-0:42 | Act 2B GPU LoRA | Pre-baked | `gpu-lora` |
-| 0:42-0:55 | Act 3 evaluation | Live 3-run eval + offline sklearn table | `evaluate` |
-| 0:55-1:00 | Act 4 hosting + wrap | Live Developer-tier deploy + inference; GPU endpoint pre-deployed | `host` |
-| after | Cleanup | Live | `cleanup` |
 
 ## Prerequisites
 
@@ -63,25 +39,6 @@ Four acts:
 
 - Data scientists / ML engineers who own the current pipeline (hands-on), plus a data/compliance stakeholder for the residency conversation.
 - The ROI decision-maker briefed and joining the framing and wrap blocks.
-
-## Pre-flight checklist (T-2 days)
-
-- [ ] Foundry project + teacher/judge model deployed; graders run on a 2-row smoke test.
-- [ ] Serverless fine-tuning capacity + GPU VM quota confirmed.
-- [ ] Train/val/eval JSONL validated (schema, BOM, prevalence, train/eval disjoint).
-- [ ] Pre-baked SFT + LoRA jobs finished; AML endpoint deployed and `invoke` works.
-- [ ] 3-run eval + offline sklearn table runs clean against pre-baked predictions.
-- [ ] Developer-tier deploy tested (and re-deployable live within the 24h window).
-- [ ] Cleanup script ready (delete Developer-tier deployment + AML endpoint).
-
-Run the automated portion:
-
-```bash
-python finetuning_demo/preflight.py
-```
-
-It prints a structured pass/fail report and exits non-zero when a required
-check fails, without raising.
 
 ## Setup
 
@@ -197,24 +154,6 @@ The orchestrator is also module-runnable: `python -m finetuning_demo.run_of_show
 - **Global Standard tier** — cheaper training throughput, no in-region residency guarantee.
 - Deleting a deployment never deletes the underlying fine-tuned model; it can be redeployed later.
 - GPU managed compute bills per GPU-hour for the whole endpoint lifetime — delete the endpoint promptly after the demo (`cleanup`).
-
-## Do not overclaim
-
-State these limits verbatim during the demo; do not soften or skip them.
-
-- gpt-oss-120b is NOT natively fine-tunable on Azure (only gpt-oss-20b serverless SFT preview).
-- RFT is NOT available on gpt-4.1-mini — it requires an o-series reasoning base model (o4-mini GA; gpt-5 gated/invite-only) and its own fine-tuning quota.
-- GRPO is NOT turnkey (Azure native = grader-based RFT + DPO; GRPO is BYO via TRL `GRPOTrainer` or Fireworks Reward Kit).
-- MACC drawdown for Fireworks-on-Foundry is UNCONFIRMED (verify badge + account team).
-- managed pipeline supports plain LoRA only (no 4-bit QLoRA / `target_modules`).
-- true BYO-GPU managed compute is classic-hub portal preview.
-- the fine-tuning safety/deployability gate is preview with fixed thresholds.
-
-## Honesty flags worth narrating
-
-- **Deploy is a control-plane (ARM) PUT** (`api-version=2024-10-01`), not the data-plane SDK.
-- **Aggregate metrics are offline** — Foundry custom evaluators score per-row only; precision / recall / F1 / AUC / top-decile lift are computed offline with scikit-learn (see `offline_metrics.py`).
-- The eval set carries a realistic **~1-2% buy prevalence**, so PR-AUC and top-decile lift are the headline metrics; accuracy is misleading at a ~98% negative base rate.
 
 ## Advanced features
 
