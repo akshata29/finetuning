@@ -1,4 +1,4 @@
-## Overview
+﻿## Overview
 
 An end-to-end, **100% synthetic, PII-free** demo of fine-tuning on Azure AI
 Foundry for a sales-call intent / lead-propensity classification use case. It
@@ -43,7 +43,7 @@ Four acts:
 ## Setup
 
 ```bash
-python -m pip install -r finetuning_demo/requirements.txt
+python -m pip install -r finetuning/requirements.txt
 ```
 
 Configuration is sourced entirely from environment variables (no secrets in
@@ -124,28 +124,28 @@ python run_of_show.py foundry-eval --models sft rft         # only specific arms
 
 
 # Act 2B — GPU managed-compute LoRA (always pre-baked)
-python finetuning_demo/run_of_show.py gpu-lora --prebaked
+python finetuning/run_of_show.py gpu-lora --prebaked
 
 # Act 3 — base vs fine-tuned vs optimized-prompt + offline metrics
-python finetuning_demo/run_of_show.py evaluate --kind propensity
-python finetuning_demo/run_of_show.py evaluate --kind intent --prebaked
+python finetuning/run_of_show.py evaluate --kind propensity
+python finetuning/run_of_show.py evaluate --kind intent --prebaked
 
 # Act 4 — Developer-tier live deploy + one inference (GPU endpoint pre-baked)
 # Like deploy, --model-id is optional (best checkpoint from saved/job id by default)
 # and --method {sft,dpo,rft} selects which saved state file to host from.
-python finetuning_demo/run_of_show.py host --deployment-name sales-intent
-python finetuning_demo/run_of_show.py host --method rft --deployment-name sales-intent-rft
-python finetuning_demo/run_of_show.py host --model-id <ft-model-id> --deployment-name sales-intent
-python finetuning_demo/run_of_show.py host --prebaked --endpoint-name sales-lora-endpoint
+python finetuning/run_of_show.py host --deployment-name sales-intent
+python finetuning/run_of_show.py host --method rft --deployment-name sales-intent-rft
+python finetuning/run_of_show.py host --model-id <ft-model-id> --deployment-name sales-intent
+python finetuning/run_of_show.py host --prebaked --endpoint-name sales-lora-endpoint
 
 # Cleanup — delete the live Developer-tier deployment
-python finetuning_demo/run_of_show.py cleanup --deployment-name sales-intent
+python finetuning/run_of_show.py cleanup --deployment-name sales-intent
 
 # All — pre-baked dry run across the live-able acts
-python finetuning_demo/run_of_show.py all
+python finetuning/run_of_show.py all
 ```
 
-The orchestrator is also module-runnable: `python -m finetuning_demo.run_of_show --help`.
+The orchestrator is also module-runnable: `python -m finetuning.run_of_show --help`.
 
 ## Cost and tier notes
 
@@ -220,7 +220,7 @@ back to the canonical set using a fuzzy-match heuristic:
 3. **Word-part containment**: if a prediction shares a longer word component with a canonical label (e.g., `"feature"` from `"feature_request"`), use the canonical label.
 4. **No match**: return the prediction unchanged (so the scorer counts it as a miss, surfacing the anomaly).
 
-This ensures accuracy and MAE metrics reflect true model skill rather than label-variance quirks. Use `python -c "from finetuning_demo.act2a1_quick_eval import _normalize_intent; print(_normalize_intent('complaint'))"` to test mapping logic.
+This ensures accuracy and MAE metrics reflect true model skill rather than label-variance quirks. Use `python -c "from finetuning.act2a1_quick_eval import _normalize_intent; print(_normalize_intent('complaint'))"` to test mapping logic.
 
 Quick-eval also includes a resilient fallback parser: when a deployment returns non-JSON text, or JSON that uses alternate keys such as `caller_intent`, `call_outcome`, or `buy_propensity_score`, the scorer attempts to normalize those fields back to the canonical `intent` / `outcome` / `propensity_score` shape before scoring.
 

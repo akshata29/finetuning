@@ -1,4 +1,4 @@
-"""Act 4 — Managed online endpoint hosting for the base + LoRA adapter.
+﻿"""Act 4 — Managed online endpoint hosting for the base + LoRA adapter.
 
 Builds the Azure ML managed online endpoint and deployment that serve the
 fine-tuned classifier. Two deployment shapes are supported:
@@ -19,7 +19,7 @@ Critical settings baked in (validator finding DR-05 and Gap 1.3/1.7):
 * A note on the 20% AzureML quota headroom required for deployment.
 
 This module is import-safe with **no Azure SDKs installed**: ``azure-ai-ml`` is
-resolved lazily via :func:`finetuning_demo.config.optional_import` and every
+resolved lazily via :func:`finetuning.config.optional_import` and every
 function raises an actionable :class:`ImportError` at call time when absent. No
 secrets or endpoints are hardcoded.
 """
@@ -29,7 +29,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from finetuning_demo.config import optional_import
+from finetuning.config import optional_import
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,7 @@ PROBE_FAILURE_THRESHOLD: int = 30
 # compute resources for performing upgrades." A single 24-vCPU
 # Standard_NC24ads_A100_v4 therefore needs ~1.2x the SKU's vCPU-family quota.
 
-DEFAULT_SCORING_DIR: str = "./finetuning_demo/onlinescoring"
+DEFAULT_SCORING_DIR: str = "./finetuning/onlinescoring"
 DEFAULT_SCORING_SCRIPT: str = "score.py"
 
 

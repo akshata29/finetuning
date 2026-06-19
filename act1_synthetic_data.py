@@ -1,4 +1,4 @@
-"""Act 1 — Synthetic Data Factory for the 1-Hour Azure Fine-Tuning Demo.
+﻿"""Act 1 — Synthetic Data Factory for the 1-Hour Azure Fine-Tuning Demo.
 
 Generates diverse, label-balanced, **PII-free** synthetic sales-call transcripts
 with intent / outcome / propensity labels and a rationale, then applies the
@@ -17,7 +17,7 @@ quality controls that make the corpus safe to fine-tune on:
   prevalence held within the production-realistic ``[0.01, 0.02]`` band.
 
 The module imports cleanly with **no** Azure SDKs installed. Optional SDKs are
-resolved lazily via :func:`finetuning_demo.config.optional_import`; live Azure
+resolved lazily via :func:`finetuning.config.optional_import`; live Azure
 operations fail only with an actionable error when invoked without the SDK or
 required configuration (OWASP A05: no credentials or endpoints in source).
 """
@@ -32,9 +32,9 @@ import re
 from collections.abc import Callable, Sequence
 from typing import Any
 
-from finetuning_demo.config import DemoConfig, optional_import
-from finetuning_demo.schemas import SYNTHETIC_SCHEMA
-from finetuning_demo.taxonomy import INTENT_LABELS, OUTCOME_LABELS, positive_rate
+from finetuning.config import DemoConfig, optional_import
+from finetuning.schemas import SYNTHETIC_SCHEMA
+from finetuning.taxonomy import INTENT_LABELS, OUTCOME_LABELS, positive_rate
 
 logger = logging.getLogger(__name__)
 
@@ -145,7 +145,7 @@ def generate_records(
     """Generate synthetic sales-call records from ``seeds`` via the teacher LLM.
 
     Each seed drives one Structured-Outputs call against ``config.teacher_model``
-    using the strict :data:`~finetuning_demo.schemas.SYNTHETIC_SCHEMA`. The
+    using the strict :data:`~finetuning.schemas.SYNTHETIC_SCHEMA`. The
     returned records carry the schema fields (``transcript``, ``intent``,
     ``outcome``, ``propensity_score``, ``rationale``) plus generation metadata
     (``mode``, ``propensity``, ``seed_id``) copied from the seed for downstream
@@ -157,7 +157,7 @@ def generate_records(
         Environment-sourced configuration (endpoint, key, teacher model).
     seeds:
         Taxonomy seed dicts from
-        :func:`finetuning_demo.taxonomy.iter_seeds`.
+        :func:`finetuning.taxonomy.iter_seeds`.
     client:
         Optional pre-built Azure OpenAI client (primarily for testing). When
         ``None`` a client is constructed from ``config``.
@@ -244,7 +244,7 @@ def build_preference_records(records: list[dict[str, Any]]) -> list[dict[str, An
     -------
     list[dict[str, Any]]
         Rows shaped ``{"transcript", "preferred", "non_preferred"}`` ready for
-        :func:`finetuning_demo.schemas.write_dpo_jsonl`.
+        :func:`finetuning.schemas.write_dpo_jsonl`.
     """
     preference_rows: list[dict[str, Any]] = []
     for record in records:
@@ -283,7 +283,7 @@ def build_rft_records(
     rows only need the prompt plus the ground-truth reference fields the grader
     reads as ``{{ item.<field> }}``. Each output row therefore carries the
     ``transcript`` and the gold ``intent`` / ``outcome`` / ``propensity_score``;
-    :func:`finetuning_demo.schemas.write_rft_jsonl` turns these into the
+    :func:`finetuning.schemas.write_rft_jsonl` turns these into the
     ``messages`` + reference-field JSONL Azure expects. No teacher calls or
     offline grading happen here.
 
@@ -301,7 +301,7 @@ def build_rft_records(
     -------
     list[dict[str, Any]]
         Rows shaped ``{"transcript", "intent", "outcome", "propensity_score"}``
-        ready for :func:`finetuning_demo.schemas.write_rft_jsonl`.
+        ready for :func:`finetuning.schemas.write_rft_jsonl`.
     """
     rft_rows: list[dict[str, Any]] = [
         {

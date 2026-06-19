@@ -1,4 +1,4 @@
-"""Engineered few-shot system prompt for the optimized-prompt eval arm.
+﻿"""Engineered few-shot system prompt for the optimized-prompt eval arm.
 
 The 3-way Act 3 comparison evaluates three candidates on identical rows and
 graders: ``base`` (raw deployment), ``finetuned`` (SFT/DPO model), and
@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import logging
 
-from finetuning_demo.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
+from finetuning.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
 
 logger = logging.getLogger(__name__)
 

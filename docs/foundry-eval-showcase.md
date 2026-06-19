@@ -1,4 +1,4 @@
-# Foundry Evaluations Showcase — Base vs SFT vs DPO vs RFT
+﻿# Foundry Evaluations Showcase — Base vs SFT vs DPO vs RFT
 
 A presenter-ready walkthrough for demoing the **Azure AI Foundry → Evaluations**
 feature on every fine-tuned model in this demo. The `foundry-eval` command
@@ -54,7 +54,7 @@ from it, or set `AZURE_AI_PROJECT_NAME`), plus the deployment names above.
 ### 0. Dry-run first (no upload, fast — rehearse safely)
 
 ```powershell
-cd finetuning_demo
+cd finetuning
 python run_of_show.py foundry-eval --limit 20 --no-upload
 ```
 

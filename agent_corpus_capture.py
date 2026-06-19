@@ -1,4 +1,4 @@
-"""Agent corpus capture — turn a deployed agent's real conversations into a
+﻿"""Agent corpus capture — turn a deployed agent's real conversations into a
 strategy-alignment training corpus.
 
 This is the **"bring your real conversations into Azure"** stage of the
@@ -24,7 +24,7 @@ The story it tells, in order:
 4. **Distill** — pair every captured conversation context with a strategy-aligned
    target reply (the *preferred*) and keep the captured baseline reply as the
    *non-preferred*. This produces drop-in SFT / DPO / RFT / eval datasets in the
-   exact same schema as :mod:`finetuning_demo.customer_conversation_alignment`,
+   exact same schema as :mod:`finetuning.customer_conversation_alignment`,
    so the existing serverless ``sft`` / ``dpo`` / ``rft`` / ``foundry-eval`` acts
    run unchanged on the captured corpus.
 
@@ -60,7 +60,7 @@ from typing import Any, Callable, Optional
 # Allow running both as a module and as a plain script.
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    __package__ = "finetuning_demo"
+    __package__ = "finetuning"
 
 from .config import DemoConfig
 from .customer_conversation_alignment import (

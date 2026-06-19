@@ -1,4 +1,4 @@
-"""Act 3A — Foundry cloud evaluation showcase across every tuned model.
+﻿"""Act 3A — Foundry cloud evaluation showcase across every tuned model.
 
 This module turns the demo's labeled validation holdout into **Foundry portal
 evaluation runs** so the side-by-side lift of each fine-tuning method (base vs
@@ -8,7 +8,7 @@ to present live.
 How it works
 ------------
 1. For each selected deployment, the labeled validation set is replayed through
-   the live deployment (reusing :mod:`finetuning_demo.act2a1_quick_eval`'s
+   the live deployment (reusing :mod:`finetuning.act2a1_quick_eval`'s
    resilient scorer) to produce a per-row prediction dataset.
 2. That dataset is scored by a small evaluator suite:
 

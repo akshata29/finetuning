@@ -1,9 +1,9 @@
-"""Foundry Agent Service — wrap a fine-tuned deployment in a managed Agent and
+﻿"""Foundry Agent Service — wrap a fine-tuned deployment in a managed Agent and
 exercise it with test cases to capture real, scored conversation data.
 
 This is the **"stand up a real Agent in Foundry"** stage of the conversation-
-alignment demo. Where :mod:`finetuning_demo.act3a_foundry_eval` evaluates the raw
-*model deployment* and :mod:`finetuning_demo.agent_corpus_capture` drives the
+alignment demo. Where :mod:`finetuning.act3a_foundry_eval` evaluates the raw
+*model deployment* and :mod:`finetuning.agent_corpus_capture` drives the
 deployment directly through chat-completions, this module creates a first-class
 **Foundry Agent Service entity** (the ``agents`` blade in the portal): a managed
 wrapper of *deployment + instructions* that you can chat with, evaluate, and —
@@ -50,7 +50,7 @@ from typing import Any, Optional
 # Allow running both as a module and as a plain script.
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    __package__ = "finetuning_demo"
+    __package__ = "finetuning"
 
 from .config import DemoConfig
 from .customer_conversation_alignment import (

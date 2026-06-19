@@ -1,5 +1,5 @@
-# API control-plane dependencies for the conversation-alignment demo UI.
-# Install into the demo venv:  pip install -r finetuning_demo/api/requirements.txt
+﻿# API control-plane dependencies for the conversation-alignment demo UI.
+# Install into the demo venv:  pip install -r finetuning/api/requirements.txt
 fastapi>=0.110,<1.0
 uvicorn[standard]>=0.27,<1.0
 pydantic>=2.5,<3.0

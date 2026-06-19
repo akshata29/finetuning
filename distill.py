@@ -1,7 +1,7 @@
-"""Distill captured Agent transcripts into a retraining corpus (close the loop).
+﻿"""Distill captured Agent transcripts into a retraining corpus (close the loop).
 
 This is the **"close the loop"** stage of the conversation-alignment demo. The
-Foundry Agent Service step (:mod:`finetuning_demo.foundry_agent_service`) replays
+Foundry Agent Service step (:mod:`finetuning.foundry_agent_service`) replays
 held-out conversations through the deployed Agent and records, for each case, the
 *Agent's actual reply* alongside the *exemplary* ``ground_truth`` reply. This
 module turns those paired transcripts into a fresh training corpus so the next
@@ -47,7 +47,7 @@ from typing import Any, Optional
 # Allow running both as a module and as a plain script.
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    __package__ = "finetuning_demo"
+    __package__ = "finetuning"
 
 from .config import DemoConfig
 from .customer_conversation_alignment import (

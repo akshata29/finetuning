@@ -1,8 +1,8 @@
-{
+﻿{
   "created": "2026-06-19T03:56:18.277151+00:00",
   "agent_id": "asst_tCymnBbUXk7wfMHLKEIUk622",
   "model_label": "sft",
-  "eval_path": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\conv_eval.jsonl",
+  "eval_path": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\conv_eval.jsonl",
   "test_cases": 10,
   "completed": 10,
   "mean_strategy_score": 0.36666666666666664,

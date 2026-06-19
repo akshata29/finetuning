@@ -1,4 +1,4 @@
-"""Act 2A1 — quick base-vs-fine-tuned comparison on the labeled validation set.
+﻿"""Act 2A1 — quick base-vs-fine-tuned comparison on the labeled validation set.
 
 A lightweight bridge between Act 2A (deploy) and Act 2B (GPU LoRA): run the
 SAME labeled holdout (``validation.jsonl``) through the **base** model deployment
@@ -11,7 +11,7 @@ Design notes
   OpenAI chat-SFT shape: each row is ``{"messages": [system, user, assistant]}``
   where the ``assistant`` content is the ground-truth JSON
   (``{"intent", "outcome", "propensity_score"}``).
-* Inference reuses :func:`finetuning_demo.act2a_serverless_sft.infer` (a
+* Inference reuses :func:`finetuning.act2a_serverless_sft.infer` (a
   data-plane chat completion against a deployment name), so no new Azure surface
   is introduced.
 * Metrics are intentionally dependency-free (exact-match intent accuracy and

@@ -1,4 +1,4 @@
-"""Act 2A — Serverless Azure OpenAI supervised fine-tuning (SFT) lifecycle.
+﻿"""Act 2A — Serverless Azure OpenAI supervised fine-tuning (SFT) lifecycle.
 
 Implements the full "Path A" loop for the 1-Hour Azure Fine-Tuning Demo:
 
@@ -13,7 +13,7 @@ Implements the full "Path A" loop for the 1-Hour Azure Fine-Tuning Demo:
 Graceful degradation (OWASP A06 — vulnerable/outdated components avoided via
 optional imports): this module imports cleanly with **zero Azure SDKs** present.
 The ``openai`` and ``azure-identity`` packages are resolved lazily inside the
-functions that need them via :func:`finetuning_demo.config.optional_import`, and
+functions that need them via :func:`finetuning.config.optional_import`, and
 ``requests`` is resolved at import time but tolerated when absent. Every secret,
 endpoint, and resource identifier is sourced from :class:`DemoConfig` — nothing
 is hardcoded (OWASP A05 Security Misconfiguration).
@@ -176,7 +176,7 @@ def upload_files(client: Any, train: str | Path, val: str | Path) -> tuple[str, 
 
     Both files are uploaded with ``purpose="fine-tune"``. The caller is
     responsible for emitting UTF-8-with-BOM JSONL (see
-    :func:`finetuning_demo.schemas.write_sft_jsonl`).
+    :func:`finetuning.schemas.write_sft_jsonl`).
 
     Parameters
     ----------
@@ -490,7 +490,7 @@ def create_dpo_job(
     ``non_preferred_output`` for each prompt — useful when "good vs. bad" is
     easier to express as a comparison than as a single gold label. The training
     and validation files must be preference-formatted (see
-    :func:`finetuning_demo.schemas.write_dpo_jsonl`).
+    :func:`finetuning.schemas.write_dpo_jsonl`).
 
     Returns
     -------
@@ -1036,7 +1036,7 @@ def infer(
         ``config`` when omitted.
     system_prompt:
         Override for the classification system prompt; defaults to the shared
-        :data:`finetuning_demo.schemas.SYSTEM_PROMPT`.
+        :data:`finetuning.schemas.SYSTEM_PROMPT`.
     temperature:
         Sampling temperature (deterministic by default).
 

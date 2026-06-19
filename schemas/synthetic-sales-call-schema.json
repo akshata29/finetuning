@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SalesCall",
+  "type": "object",
+  "properties": {
+    "transcript": {
+      "type": "string",
+      "description": "Full verbatim transcript of the synthetic sales call using placeholders only ([REP], [PROSPECT], Acme Corp)."
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "pricing_inquiry",
+        "feature_request",
+        "competitor_comparison",
+        "objection_handling",
+        "scheduling_followup",
+        "support_escalation",
+        "general_interest"
+      ],
+      "description": "Primary caller intent for this call."
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "closed_won",
+        "closed_lost",
+        "follow_up_scheduled",
+        "no_decision",
+        "disqualified"
+      ],
+      "description": "Outcome of the sales call."
+    },
+    "propensity_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Probability that this prospect will buy, in [0, 1]."
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Short explanation of the assigned labels and propensity score."
+    }
+  },
+  "required": ["transcript", "intent", "outcome", "propensity_score", "rationale"],
+  "additionalProperties": false
+}

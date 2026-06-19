@@ -1,4 +1,4 @@
-"""Run-of-show orchestrator for the 1-Hour Azure Fine-Tuning Demo.
+﻿"""Run-of-show orchestrator for the 1-Hour Azure Fine-Tuning Demo.
 
 Wires the four demo acts into a single CLI with live-vs-pre-baked toggles that
 mirror the 1-hour run-of-show:
@@ -14,10 +14,10 @@ mirror the 1-hour run-of-show:
 * ``all``       — run the live-able acts end to end in pre-baked mode.
 
 Import safety (OWASP A06 — avoid hard dependence on optional components): this
-module and ``python finetuning_demo/run_of_show.py --help`` import and run with
+module and ``python finetuning/run_of_show.py --help`` import and run with
 **zero Azure SDKs installed**. Every act module is imported lazily inside its
 subcommand handler, and those act modules only resolve Azure SDKs lazily via
-:func:`finetuning_demo.config.optional_import`. No secrets or endpoints are
+:func:`finetuning.config.optional_import`. No secrets or endpoints are
 hardcoded — configuration is sourced once from :class:`DemoConfig` via the
 environment (OWASP A05 Security Misconfiguration).
 """
@@ -34,13 +34,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover - typing only, never imports SDKs at runtime
     from .config import DemoConfig
 
-# Allow running both as a module (``python -m finetuning_demo.run_of_show``) and
-# as a plain script (``python finetuning_demo/run_of_show.py``): when launched as
+# Allow running both as a module (``python -m finetuning.run_of_show``) and
+# as a plain script (``python finetuning/run_of_show.py``): when launched as
 # a script there is no package context, so register one and add the repo root to
 # ``sys.path`` so the lazy ``from . import ...`` calls in the handlers resolve.
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    __package__ = "finetuning_demo"
+    __package__ = "finetuning"
 
 logger = logging.getLogger(__name__)
 

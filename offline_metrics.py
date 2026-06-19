@@ -1,9 +1,9 @@
-"""Offline aggregate classification metrics for the Act 3 3-way comparison.
+﻿"""Offline aggregate classification metrics for the Act 3 3-way comparison.
 
 The Azure Evals run only surfaces per-criterion ``pass_rate`` plus a portal
 ``report_url`` (DR-06); the headline aggregate metrics are computed here, OFFLINE,
 from the prediction JSONL — the single source of truth shared with
-:mod:`finetuning_demo.act3_evaluation`.
+:mod:`finetuning.act3_evaluation`.
 
 Two metric families are provided, never interchanged (DR-09):
 
@@ -13,7 +13,7 @@ Two metric families are provided, never interchanged (DR-09):
   positive class (accuracy is ~98% for a trivial all-negative model and misleads).
 * :func:`intent_metrics` — MULTICLASS intent: **macro-F1** (``average="macro"``),
   per-class precision/recall via ``classification_report``, and a multiclass
-  confusion matrix labeled in :data:`finetuning_demo.taxonomy.INTENT_LABELS`
+  confusion matrix labeled in :data:`finetuning.taxonomy.INTENT_LABELS`
   order.
 
 ``scikit-learn`` (and ``numpy``) are optional. This module imports cleanly when
@@ -28,7 +28,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from finetuning_demo.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
+from finetuning.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
 
 logger = logging.getLogger(__name__)
 
@@ -197,7 +197,7 @@ def intent_metrics(path: str | Path, name: str) -> dict[str, Any]:
 
     Produces macro-F1 (``average="macro"``), a per-class precision/recall
     ``classification_report`` (as a dict), and a multiclass confusion matrix —
-    all labeled in :data:`finetuning_demo.taxonomy.INTENT_LABELS` order.
+    all labeled in :data:`finetuning.taxonomy.INTENT_LABELS` order.
 
     Parameters
     ----------

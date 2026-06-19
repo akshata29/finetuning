@@ -1,4 +1,4 @@
-# Conversation-Strategy Alignment — End-to-End Pipeline
+﻿# Conversation-Strategy Alignment — End-to-End Pipeline
 
 A **self-contained** fine-tuning pipeline for the customer's actual use case:
 *aligning conversational strategies from long, multi-turn transcripts*. Unlike
@@ -63,7 +63,7 @@ from no-code to the customer's exact requirement — *parity → credibility →
    system-site-packages access to the Azure SDKs):
 
    ```powershell
-   cd finetuning_demo
+   cd finetuning
    # PowerShell: invoke the venv python with the call operator (&)
    & .venv\Scripts\python.exe customer_conversation_alignment.py --help
    ```
@@ -95,7 +95,7 @@ from no-code to the customer's exact requirement — *parity → credibility →
 ## Quick start (offline data only)
 
 ```powershell
-cd finetuning_demo
+cd finetuning
 & .venv\Scripts\python.exe customer_conversation_alignment.py gen-data --count 200 --eval-count 60
 ```
 
@@ -113,7 +113,7 @@ data/conversation_alignment/
 
 ## Run the acts end to end
 
-All commands run from `finetuning_demo` with `& .venv\Scripts\python.exe`.
+All commands run from `finetuning` with `& .venv\Scripts\python.exe`.
 
 ### Act 0 — Bootstrap the corpus by capturing the base agent (TracesDistillation-style)
 

@@ -1,4 +1,4 @@
-"""Managed-online-endpoint scoring script for base + LoRA adapter inference.
+﻿"""Managed-online-endpoint scoring script for base + LoRA adapter inference.
 
 Implements the Azure ML inference-server contract (:func:`init` + :func:`run`)
 for a Phi-4-mini base model with a separately-registered ``peft`` LoRA adapter.
@@ -9,7 +9,7 @@ label.
 
 Label coercion is bound to the **demo taxonomy** (validator finding DR-10): the
 allowed labels are the intent classes plus the binary ``buy`` / ``not_buy``
-propensity labels imported from :mod:`finetuning_demo.taxonomy` — NOT the
+propensity labels imported from :mod:`finetuning.taxonomy` — NOT the
 research placeholder ``hot`` / ``warm`` / ``cold``. Scoring and evaluation thus
 share one source of truth.
 
@@ -26,7 +26,7 @@ import logging
 import os
 from typing import Any
 
-from finetuning_demo.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
+from finetuning.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
 
 logger = logging.getLogger(__name__)
 

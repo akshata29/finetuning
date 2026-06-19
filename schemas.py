@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Schema loading
 # ---------------------------------------------------------------------------
-_SCHEMAS_DIR = Path(__file__).resolve().parent.parent / "schemas"
+_SCHEMAS_DIR = Path(__file__).resolve().parent / "schemas"
 _SYNTHETIC_SCHEMA_PATH = _SCHEMAS_DIR / "synthetic-sales-call-schema.json"
 
 

@@ -1,4 +1,4 @@
-"""Act 3 — Evals API 3-way classification runs (bring-your-own-predictions).
+﻿"""Act 3 — Evals API 3-way classification runs (bring-your-own-predictions).
 
 Builds two Azure OpenAI Evals definitions that share the SAME three candidates
 (``base`` / ``finetuned`` / ``optimized-prompt``) on identical uploaded
@@ -7,7 +7,7 @@ prediction JSONL files:
 * a **binary propensity** eval (``buy`` vs ``not_buy``) whose ``label_model``
   grader uses ``passing_labels=["buy"]`` to define the single positive class; and
 * a **multiclass intent** eval whose ``label_model`` grader spans the full
-  :data:`finetuning_demo.taxonomy.INTENT_LABELS` set with no single positive
+  :data:`finetuning.taxonomy.INTENT_LABELS` set with no single positive
   class (DR-09).
 
 The Evals API surface is the OpenAI Evals API reached through
@@ -17,7 +17,7 @@ and data-source payloads are emitted as plain dicts (which the Evals API accepts
 freely) so building them never requires a live client.
 
 Aggregate metrics (precision/recall/F1/AUC/PR-AUC/lift/macro-F1) are computed
-OFFLINE from the prediction JSONL — see :mod:`finetuning_demo.offline_metrics`.
+OFFLINE from the prediction JSONL — see :mod:`finetuning.offline_metrics`.
 The Evals run provides only per-criterion ``pass_rate`` plus the portal
 ``report_url`` (DR-06).
 """
@@ -27,8 +27,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from finetuning_demo.config import DemoConfig, optional_import
-from finetuning_demo.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
+from finetuning.config import DemoConfig, optional_import
+from finetuning.taxonomy import INTENT_LABELS, PROPENSITY_LABELS
 
 logger = logging.getLogger(__name__)
 
@@ -143,7 +143,7 @@ def build_intent_criteria(grader_model: str) -> list[dict[str, Any]]:
 
     #. ``string_check`` — exact predicted-intent == ground-truth-intent match.
     #. ``label_model`` — LLM grader spanning the FULL
-       :data:`finetuning_demo.taxonomy.INTENT_LABELS` set, with no single
+       :data:`finetuning.taxonomy.INTENT_LABELS` set, with no single
        positive class (``passing_labels`` covers every intent so the grader
        classifies rather than gating on one positive label).
 
@@ -184,7 +184,7 @@ def build_openai_client(config: DemoConfig | None = None) -> Any:
     """Build the OpenAI Evals client via ``azure-ai-projects`` (optional SDK).
 
     Resolves ``azure.ai.projects`` and ``azure.identity`` lazily through
-    :func:`finetuning_demo.config.optional_import` so this module imports with
+    :func:`finetuning.config.optional_import` so this module imports with
     no Azure SDKs present. Raises an actionable error only when invoked without
     the SDKs or without a configured project endpoint.
 

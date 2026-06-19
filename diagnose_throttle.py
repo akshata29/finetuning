@@ -1,4 +1,4 @@
-"""Throttle diagnostic — capture the RAW Azure OpenAI 429 (TPM vs RPM vs backend).
+﻿"""Throttle diagnostic — capture the RAW Azure OpenAI 429 (TPM vs RPM vs backend).
 
 Answers the question "is this a TPM limit, an RPM limit, or shared-pool backend
 capacity?" by reading the actual response headers and body instead of guessing.
@@ -16,7 +16,7 @@ does not silently swallow the 429. Whatever comes back — 200 or 429 — it pri
 Run from the repo root so the venv with the SDK is used:
 
     cd c:\\repos\\playground
-    & .\\finetuning_demo\\.venv\\Scripts\\python.exe -m finetuning_demo.diagnose_throttle --deployment chat41mini
+    & .\\finetuning\\.venv\\Scripts\\python.exe -m finetuning.diagnose_throttle --deployment chat41mini
 
 Or from the package dir with its venv active:
 
@@ -32,7 +32,7 @@ from typing import Any
 
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    __package__ = "finetuning_demo"
+    __package__ = "finetuning"
 
 from .act2a_serverless_sft import build_client
 from .config import DemoConfig

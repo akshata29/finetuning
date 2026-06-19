@@ -1,4 +1,4 @@
-"""FastAPI control plane for the conversation-alignment fine-tuning demo.
+﻿"""FastAPI control plane for the conversation-alignment fine-tuning demo.
 
 This wraps the **existing** demo functions (the same code the CLI drives) behind
 a small HTTP API so a React frontend can run the full loop:
@@ -11,7 +11,7 @@ a small HTTP API so a React frontend can run the full loop:
 6. **Distill** captured transcripts into a retrain corpus
 7. **Retrain** from the distilled corpus (closes the loop)
 
-Long-running stages run as background jobs (see :mod:`finetuning_demo.api.jobs`);
+Long-running stages run as background jobs (see :mod:`finetuning.api.jobs`);
 the frontend polls ``GET /api/jobs/{id}`` for status + streamed logs. Fast,
 read-only operations (config, dataset listing/preview, distill) return inline.
 
@@ -39,7 +39,7 @@ from typing import Any, Optional
 # Allow running both as a module and as a plain script.
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
-    __package__ = "finetuning_demo.api"
+    __package__ = "finetuning.api"
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -302,7 +302,7 @@ def finetune_states() -> dict[str, Any]:
         path = DATA_DIR / fname
         if path.exists():
             try:
-                states[label] = json.loads(path.read_text(encoding="utf-8"))
+                states[label] = json.loads(path.read_text(encoding="utf-8-sig"))
             except json.JSONDecodeError:
                 states[label] = None
     return {"states": states}
@@ -404,7 +404,7 @@ def foundry_report() -> dict[str, Any]:
     path = FOUNDRY_DIR / FOUNDRY_REPORT_FILE
     if not path.exists():
         return {"report": None}
-    return {"report": json.loads(path.read_text(encoding="utf-8"))}
+    return {"report": json.loads(path.read_text(encoding="utf-8-sig"))}
 
 
 # ---------------------------------------------------------------------------
@@ -475,7 +475,7 @@ def agent_transcripts() -> dict[str, Any]:
     transcripts_path = AGENT_SERVICE_DIR / AGENT_TRANSCRIPTS_FILE
     report = None
     if report_path.exists():
-        report = json.loads(report_path.read_text(encoding="utf-8"))
+        report = json.loads(report_path.read_text(encoding="utf-8-sig"))
     rows: list[Any] = []
     if transcripts_path.exists():
         with transcripts_path.open("r", encoding="utf-8-sig") as handle:
@@ -514,7 +514,7 @@ def distill_summary() -> dict[str, Any]:
     path = DISTILLED_DIR / DISTILL_REPORT_FILE
     if not path.exists():
         return {"summary": None}
-    return {"summary": json.loads(path.read_text(encoding="utf-8"))}
+    return {"summary": json.loads(path.read_text(encoding="utf-8-sig"))}
 
 
 # ---------------------------------------------------------------------------

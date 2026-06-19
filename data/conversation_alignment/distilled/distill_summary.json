@@ -1,6 +1,6 @@
-{
-  "source_transcripts": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\agent_service\\agent_test_transcripts.jsonl",
-  "eval_source": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\conv_eval.jsonl",
+﻿{
+  "source_transcripts": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\agent_service\\agent_test_transcripts.jsonl",
+  "eval_source": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\conv_eval.jsonl",
   "include_all": true,
   "score_threshold": 0.75,
   "transcripts_total": 10,
@@ -17,10 +17,10 @@
     "val": 2
   },
   "artifacts": {
-    "dir": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled",
-    "conv_sft_train.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_sft_train.jsonl",
-    "conv_sft_val.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_sft_val.jsonl",
-    "conv_dpo_train.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_dpo_train.jsonl",
-    "conv_dpo_val.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_dpo_val.jsonl"
+    "dir": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\distilled",
+    "conv_sft_train.jsonl": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\distilled\\conv_sft_train.jsonl",
+    "conv_sft_val.jsonl": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\distilled\\conv_sft_val.jsonl",
+    "conv_dpo_train.jsonl": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\distilled\\conv_dpo_train.jsonl",
+    "conv_dpo_val.jsonl": "C:\\repos\\playground\\finetuning\\data\\conversation_alignment\\distilled\\conv_dpo_val.jsonl"
   }
 }

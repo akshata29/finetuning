@@ -1,8 +1,8 @@
-"""Act 2B — GPU-based LoRA / QLoRA fine-tuning on Azure ML managed compute.
+﻿"""Act 2B — GPU-based LoRA / QLoRA fine-tuning on Azure ML managed compute.
 
 This module builds the Path B (BYO-GPU, open-weight) fine-tuning jobs for the
 demo. It is import-safe with **no Azure SDKs installed** — the ``azure-ai-ml``
-surface is resolved lazily through :func:`finetuning_demo.config.optional_import`
+surface is resolved lazily through :func:`finetuning.config.optional_import`
 and every job-builder degrades gracefully with an actionable error when the SDK
 is absent.
 
@@ -25,7 +25,7 @@ DD-04 / DR-07):
   ``target_modules``).
 
 No secrets or endpoints are hardcoded; resource identifiers come from the
-caller-supplied :class:`~finetuning_demo.config.DemoConfig` / ``MLClient``.
+caller-supplied :class:`~finetuning.config.DemoConfig` / ``MLClient``.
 """
 
 from __future__ import annotations
@@ -33,7 +33,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from finetuning_demo.config import optional_import
+from finetuning.config import optional_import
 
 logger = logging.getLogger(__name__)
 

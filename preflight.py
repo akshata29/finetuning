@@ -1,4 +1,4 @@
-"""Pre-flight checker for the 1-Hour Azure Fine-Tuning Demo.
+﻿"""Pre-flight checker for the 1-Hour Azure Fine-Tuning Demo.
 
 Validates demo prerequisites and reports a structured pass/fail summary
 *without ever raising*: missing required environment variables, optional Azure
@@ -8,7 +8,7 @@ non-zero when a required check fails (OWASP A05 — fail loudly on
 misconfiguration, but never with an unhandled traceback).
 
 This module imports and runs with **zero Azure SDKs installed**: optional SDKs
-are probed through :func:`finetuning_demo.config.optional_import`, which returns
+are probed through :func:`finetuning.config.optional_import`, which returns
 availability flags instead of raising.
 """
 
@@ -20,13 +20,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
-# Allow running both as a module (``python -m finetuning_demo.preflight``) and as
-# a plain script (``python finetuning_demo/preflight.py``): when launched as a
+# Allow running both as a module (``python -m finetuning.preflight``) and as
+# a plain script (``python finetuning/preflight.py``): when launched as a
 # script there is no package context, so register one and add the repo root to
 # ``sys.path`` before resolving the relative imports below.
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    __package__ = "finetuning_demo"
+    __package__ = "finetuning"
 
 from .config import TIER_NAMES, DemoConfig, optional_import
 from .run_of_show import DATA_DIR, EVAL_FILE, TRAIN_FILE, VAL_FILE
@@ -76,7 +76,7 @@ def check(
         Demo configuration; defaults to :meth:`DemoConfig.from_env`.
     data_dir:
         Folder expected to hold the dataset JSONL files; defaults to
-        :data:`finetuning_demo.run_of_show.DATA_DIR`.
+        :data:`finetuning.run_of_show.DATA_DIR`.
 
     Returns
     -------

@@ -1,4 +1,4 @@
----
+﻿---
 title: One-Hour Fine-Tuning Demo Guide — Open-Weight LoRA for Long-Context Conversation Alignment
 description: Presenter guide tailoring the Azure fine-tuning demo to a customer focused on LoRA fine-tuning of open-source foundation models for aligning conversational strategies from long multi-turn transcripts.
 author: Playground demo team
@@ -191,7 +191,7 @@ Talking points:
 > ```
 >
 > **Run the whole loop end to end (one sitting).** Each command maps to one box;
-> all run from `finetuning_demo` with `& .venv\Scripts\python.exe`:
+> all run from `finetuning` with `& .venv\Scripts\python.exe`:
 >
 > ```powershell
 > # LAP 1 ─────────────────────────────────────────────────────────────────
@@ -468,7 +468,7 @@ floor; QLoRA lets you stay on a single card.
 ## Commands quick reference
 
 ```powershell
-cd finetuning_demo
+cd finetuning
 
 # Data from THEIR corpus (capture a deployed agent -> training corpus)
 # --agent-deployment accepts a friendly label (base/sft/dpo/rft, from .env) or a

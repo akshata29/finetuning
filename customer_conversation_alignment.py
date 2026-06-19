@@ -1,4 +1,4 @@
-"""Customer task — Conversational-Strategy Alignment, end to end.
+﻿"""Customer task — Conversational-Strategy Alignment, end to end.
 
 This is a **self-contained** end-to-end pipeline for the customer's actual use
 case: *aligning conversational strategies from long, multi-turn conversation
@@ -33,8 +33,8 @@ with the existing ``data/*.jsonl`` classifier corpus.
 
 Import safety (OWASP A06): this module imports with **zero Azure SDKs** present.
 Azure SDKs are resolved lazily inside the functions that need them (reusing the
-tested helpers in :mod:`finetuning_demo.act2a_serverless_sft` and
-:mod:`finetuning_demo.act3a_foundry_eval`). Every secret/endpoint comes from
+tested helpers in :mod:`finetuning.act2a_serverless_sft` and
+:mod:`finetuning.act3a_foundry_eval`). Every secret/endpoint comes from
 :class:`DemoConfig` via the environment (OWASP A05) — nothing is hardcoded.
 
 Note: this module deliberately does **not** use ``from __future__ import
@@ -53,12 +53,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Optional
 
-# Allow running both as a module (``python -m finetuning_demo.customer_...``) and
+# Allow running both as a module (``python -m finetuning.customer_...``) and
 # as a plain script: register the package context when launched as a script so
 # the ``from . import ...`` calls resolve.
 if __package__ in (None, ""):  # pragma: no cover - script-launch shim
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    __package__ = "finetuning_demo"
+    __package__ = "finetuning"
 
 from .config import DemoConfig
 
@@ -1733,7 +1733,7 @@ def cmd_foundry_eval(args: argparse.Namespace, config: DemoConfig) -> int:
 def cmd_capture(args: argparse.Namespace, config: DemoConfig) -> int:
     """Capture a deployed agent's conversations into the training corpus.
 
-    Delegates to :mod:`finetuning_demo.agent_corpus_capture` (lazy import keeps
+    Delegates to :mod:`finetuning.agent_corpus_capture` (lazy import keeps
     this module free of any capture-time dependency at load).
     """
     from . import agent_corpus_capture as capture  # noqa: PLC0415
@@ -1744,7 +1744,7 @@ def cmd_capture(args: argparse.Namespace, config: DemoConfig) -> int:
 def cmd_agent_create(args: argparse.Namespace, config: DemoConfig) -> int:
     """Create a managed Foundry Agent that wraps a fine-tuned deployment.
 
-    Delegates to :mod:`finetuning_demo.foundry_agent_service` (lazy import keeps
+    Delegates to :mod:`finetuning.foundry_agent_service` (lazy import keeps
     this module free of the Agents SDK at load).
     """
     from . import foundry_agent_service as agentsvc  # noqa: PLC0415
