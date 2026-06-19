@@ -1,0 +1,15 @@
+{
+  "created": "2026-06-18T16:12:58.425541+00:00",
+  "mode": "live",
+  "agent_deployment": "chat41mini",
+  "conversations": 200,
+  "transcripts_file": "captured_transcripts.jsonl",
+  "gap_report_file": "capture_gap_report.json",
+  "strategies": [
+    "consultative_discovery",
+    "value_framing",
+    "objection_reframe",
+    "evidence_backed",
+    "mutual_next_step"
+  ]
+}

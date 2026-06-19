@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-06-17T18:39:02.901815+00:00",
+  "examples": 20,
+  "intent_accuracy_delta": 0.25,
+  "unreliable": [],
+  "base": {
+    "name": "chat41mini",
+    "count": 20,
+    "errors": 0,
+    "intent_accuracy": 0.55,
+    "propensity_mae": 0.08850000000000002,
+    "predictions_file": "preds_base.jsonl"
+  },
+  "finetuned": {
+    "name": "sales-intent",
+    "count": 20,
+    "errors": 0,
+    "intent_accuracy": 0.8,
+    "propensity_mae": 0.096,
+    "predictions_file": "preds_finetuned.jsonl"
+  }
+}

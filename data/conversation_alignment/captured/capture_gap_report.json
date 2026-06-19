@@ -1,0 +1,36 @@
+{
+  "created": "2026-06-18T16:12:58.425541+00:00",
+  "mode": "live",
+  "agent_deployment": "chat41mini",
+  "conversations": 200,
+  "baseline_mean": 0.325,
+  "aligned_mean": 0.505,
+  "lift": 0.18,
+  "per_strategy": {
+    "consultative_discovery": {
+      "count": 40,
+      "baseline_mean": 0.617,
+      "aligned_mean": 0.875
+    },
+    "value_framing": {
+      "count": 40,
+      "baseline_mean": 0.417,
+      "aligned_mean": 0.55
+    },
+    "objection_reframe": {
+      "count": 40,
+      "baseline_mean": 0.0,
+      "aligned_mean": 0.017
+    },
+    "evidence_backed": {
+      "count": 40,
+      "baseline_mean": 0.025,
+      "aligned_mean": 0.492
+    },
+    "mutual_next_step": {
+      "count": 40,
+      "baseline_mean": 0.567,
+      "aligned_mean": 0.592
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_transcripts": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\agent_service\\agent_test_transcripts.jsonl",
+  "eval_source": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\conv_eval.jsonl",
+  "include_all": true,
+  "score_threshold": 0.75,
+  "transcripts_total": 10,
+  "selected": 10,
+  "skipped_incomplete": 0,
+  "skipped_above_threshold": 0,
+  "skipped_no_context": 0,
+  "sft_rows": {
+    "train": 8,
+    "val": 2
+  },
+  "dpo_rows": {
+    "train": 8,
+    "val": 2
+  },
+  "artifacts": {
+    "dir": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled",
+    "conv_sft_train.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_sft_train.jsonl",
+    "conv_sft_val.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_sft_val.jsonl",
+    "conv_dpo_train.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_dpo_train.jsonl",
+    "conv_dpo_val.jsonl": "C:\\repos\\playground\\finetuning_demo\\data\\conversation_alignment\\distilled\\conv_dpo_val.jsonl"
+  }
+}

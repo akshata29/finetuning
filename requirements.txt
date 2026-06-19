@@ -1,0 +1,26 @@
+# 1-Hour Azure Fine-Tuning Demo — Python dependencies.
+#
+# Core demo + control plane (orchestrator, acts 1-4, offline metrics).
+# Pinned for reproducibility; bump deliberately after re-validating the run-of-show.
+openai==1.59.6
+azure-ai-ml==1.23.1
+# azure-ai-projects 2.x requires openai>=2.8.0, which conflicts with the
+# validated openai==1.59.6 stack above. 1.0.0 is the last stable release
+# compatible with openai 1.x and exposes the only API this demo uses:
+# AIProjectClient(...).get_openai_client() (see act3_evaluation.py).
+azure-ai-projects==1.0.0
+azure-ai-evaluation==1.3.0
+azure-identity==1.19.0
+azure-mgmt-cognitiveservices==13.6.0
+scikit-learn==1.6.1
+numpy==2.1.3
+pandas==2.2.3
+requests==2.32.3
+
+# Endpoint-side only (Act 4 GPU managed online endpoint scoring environment).
+# These run INSIDE the AzureML inference container, not on the demo driver host;
+# install them in the scoring environment, not the orchestrator venv.
+# transformers==4.46.3
+# peft==0.13.2
+# accelerate==1.1.1
+# bitsandbytes==0.44.1

@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-06-18T12:10:05.446191+00:00",
+  "project_name": "astaieus2proj",
+  "examples": 0,
+  "uploaded": false,
+  "runs": [],
+  "failures": [
+    {
+      "label": "base",
+      "deployment": "chat41mini",
+      "error": "(InternalError) The get 'astaieus2proj' workspace request failed with HTTP 404 - (ResourceNotFound) The Resource 'Microsoft.MachineLearningServices/workspaces/astaieus2proj' under resource group 'astaipublic' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix"
+    },
+    {
+      "label": "sft",
+      "deployment": "sales-intent",
+      "error": "(InternalError) The get 'astaieus2proj' workspace request failed with HTTP 404 - (ResourceNotFound) The Resource 'Microsoft.MachineLearningServices/workspaces/astaieus2proj' under resource group 'astaipublic' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix"
+    },
+    {
+      "label": "dpo",
+      "deployment": "sales-intent-dpo",
+      "error": "(InternalError) The get 'astaieus2proj' workspace request failed with HTTP 404 - (ResourceNotFound) The Resource 'Microsoft.MachineLearningServices/workspaces/astaieus2proj' under resource group 'astaipublic' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix"
+    },
+    {
+      "label": "rft",
+      "deployment": "sales-intent-rft",
+      "error": "(InternalError) The get 'astaieus2proj' workspace request failed with HTTP 404 - (ResourceNotFound) The Resource 'Microsoft.MachineLearningServices/workspaces/astaieus2proj' under resource group 'astaipublic' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "method": "reinforcement",
+  "job_id": "ftjob-0932335269b940c4ac93ae517329011b",
+  "status": "succeeded",
+  "model_id": "o4-mini-2025-04-16.ft-0932335269b940c4ac93ae517329011b-conv-rft",
+  "created": "2026-06-18T21:22:34.148555+00:00",
+  "deployment": "conv-align-rft",
+  "deploy_response_status": "Creating"
+}

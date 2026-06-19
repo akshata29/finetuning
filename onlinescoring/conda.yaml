@@ -1,0 +1,17 @@
+# Custom inference environment for base + LoRA adapter scoring.
+# azureml-inference-server-http is REQUIRED in any custom scoring env
+# (Azure ML inference server). Pin the ML stack to match the CUDA base image.
+name: phi4-lora-inference
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip=24.0
+  - pip:
+      - azureml-inference-server-http   # REQUIRED for the scoring server
+      - torch==2.4.0
+      - transformers==4.46.0
+      - peft==0.13.2
+      - accelerate==1.0.1
+      - safetensors==0.4.5
+      - sentencepiece==0.2.0
